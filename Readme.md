@@ -2,13 +2,13 @@
 
 1. Fedex
 
-For more information visit [Fedex Web Services for Shipping](https://www.fedex.com/wpor/web/jsp/drclinks.jsp?links=wss/index.html).
-
-This will use FEDEX API to get the shipment information, you will need a Fedex developer/production credentials.
-
-Use Fedex_Info method of FedexInfo class from fedexinfo.rb. 
-
-def Fedex_Info (fromZipCode, toZipCode, weight)  where fromZipCode => source zipcode, toZipCode => destination zipcode, and weight => package weight in LB
+   For more information visit [Fedex Web Services for Shipping](https://www.fedex.com/wpor/web/jsp/drclinks.jsp?links=wss/index.html).
+   This will use FEDEX API to get the shipment information, you will need a Fedex developer/production credentials.
+```ruby
+   Use Fedex_Info method of FedexInfo class from fedexinfo.rb. 
+   def Fedex_Info (fromZipCode, toZipCode, weight)
+````		
+   where fromZipCode => source zipcode, toZipCode => destination zipcode, and weight => package weight in LB
 
 2. UPS (Under development)
 
