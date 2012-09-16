@@ -1,8 +1,15 @@
-# Fedex Rate Web Service
+# Shipping Rate
+
+1. Fedex
 
 For more information visit [Fedex Web Services for Shipping](https://www.fedex.com/wpor/web/jsp/drclinks.jsp?links=wss/index.html).
 
 This will use FEDEX API to get the shipment information, you will need a Fedex developer/production credentials.
+
+2. UPS (Under development)
+
+3. US Post Office (Under development)
+
 
 # Installation:
 
