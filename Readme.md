@@ -2,10 +2,7 @@
 
 For more information visit [Fedex Web Services for Shipping](https://www.fedex.com/wpor/web/jsp/drclinks.jsp?links=wss/index.html).
 
-This version uses the Non-SOAP Web Services so there is no need to download the
-Fedex WSDL files, note however that you will need to apply for development/production credentials.
-
-Note: This is work in progress make sure to test your results.
+This will use FEDEX API to get the shipment information, you will need a Fedex developer/production credentials.
 
 # Installation:
 
@@ -115,61 +112,6 @@ Fedex provides multiple total values; `total_net_charge` is the final amount you
           @total_net_freight="32.1",
           @rate_zone="51">
 ```
-
-### ** Generate a shipping label (PDF) **
-
-To create a label for a shipment:
-
-```ruby
-label = fedex.label(:filename => "my_dir/example.pdf",
-                    :shipper=>shipper,
-                    :recipient => recipient,
-                    :packages => packages,
-                    :service_type => "FEDEX_GROUND",
-                    :shipping_details => shipping_details)
-```
-
-### ** Generate a shipping label in any available format **
-
-Change the filename extension and pass a label_specification hash. For example:
-
-```ruby
-example_spec = {
-  :image_type => "EPL2",
-  :label_stock_type => "STOCK_4X6"
-}
-
-label = fedex.label(:filename => "my_dir/example_epl2.pcx",
-                    :shipper=>shipper,
-                    :recipient => recipient,
-                    :packages => packages,
-                    :service_type => "FEDEX_GROUND",
-                    :shipping_details => shipping_details,
-                    :label_specification => example_spec)
-```
-### ** Storing a label on Amazon S3 with Paperclip **
-
-This is useful when you need to store the labels for later use, and are hosting your application on [Heroku](http://www.heroku.com/) as they do not allow writing to the filesystem, save the `tmp` directory. With [Paperclip](https://github.com/thoughtbot/paperclip/) setup up on a shipment model:
-
-```ruby
-label = fedex.label(:filename => "tmp/example_label.pdf",
-                    :shipper=>shipper,
-                    :recipient => recipient,
-                    :packages => packages,
-                    :service_type => "FEDEX_GROUND",
-                    :shipping_details => shipping_details,
-                    :label_specification => example_spec)
-```
-
-Then attach the label to your Paperclip model:
-
-```ruby
-shipment.fedex_label = label.file_name
-shipment.save!
-```
-
-Documentation for setting up Paperclip with Amazon S3 can be found in the Paperclip [README](https://github.com/thoughtbot/paperclip/#storage).
-
 
 ### ** Tracking a shipment **
 
