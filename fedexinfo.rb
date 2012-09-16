@@ -1,4 +1,5 @@
 require 'fedex'
+
 class FedexInfo
 
 def Fedex_Info (fromZipCode, toZipCode, weight)
