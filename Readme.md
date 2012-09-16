@@ -6,10 +6,13 @@ For more information visit [Fedex Web Services for Shipping](https://www.fedex.c
 
 This will use FEDEX API to get the shipment information, you will need a Fedex developer/production credentials.
 
+Use Fedex_Info method of FedexInfo class from fedexinfo.rb. 
+
+def Fedex_Info (fromZipCode, toZipCode, weight)  where fromZipCode => source zipcode, toZipCode => destination zipcode, and weight => package weight in LB
+
 2. UPS (Under development)
 
 3. US Post Office (Under development)
-
 
 # Installation:
 
@@ -118,49 +121,6 @@ Fedex provides multiple total values; `total_net_charge` is the final amount you
           @total_freight_discounts=nil,
           @total_net_freight="32.1",
           @rate_zone="51">
-```
-
-### ** Tracking a shipment **
-
-To track a shipment:
-
-```ruby
-tracking_info = fedex.track(:tracking_number => "1234567890123")
-
-tracking_info.tracking_number
-# => "1234567890123"
-
-tracking_info.status
-# => "Delivered"
-
-tracking_info.events.first.description
-# => "On FedEx vehicle for delivery"
-```
-
-### ** Verifying an address **
-
-To verify an address is valid and deliverable:
-
-```ruby
-
-address = {
-  :street      => "5 Elm Street",
-  :city        => "Norwalk",
-  :state       => "CT",
-  :postal_code => "06850",
-  :country     => "USA"
-}
-
-address_result = fedex.validate_address(:address => address)
-
-address_result.residential
-# => true
-
-address_result.score
-# => 100
-
-address_result.postal_code
-# => "06850-3901"
 ```
 
 # Services/Options Available
