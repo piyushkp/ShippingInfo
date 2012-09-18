@@ -125,7 +125,18 @@ Fedex provides multiple total values; `total_net_charge` is the final amount you
           @total_net_freight="32.1",
           @rate_zone="51">
 ```
+### ** Getting Transit Time **
+Get the Transit Time by
 
+```ruby
+ship = fedex.ship(:shipper=>shipper,
+                  :recipient => recipient,
+                  :packages => packages,
+                  :service_type => "FEDEX_GROUND",
+                  :shipping_details => shipping_details)
+ 
+puts ship[:completed_shipment_detail][:operational_detail] [:transit_time]
+```
 # Services/Options Available
 
 ```ruby
