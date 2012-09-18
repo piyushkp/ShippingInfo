@@ -6,9 +6,10 @@
    This will use FEDEX API to get the shipment information, you will need a Fedex developer/production credentials.
 ```ruby
    Use Fedex_Info method of FedexInfo class from fedexinfo.rb. 
-   def Fedex_Info (fromZipCode, toZipCode, weight)
+   def Fedex_Info (fromState, fromZipCode, toState, toZipCode, weight)
 ````		
-   where fromZipCode => source zipcode, toZipCode => destination zipcode, and weight => package weight in LB
+   where fromState => source state e.g. MI, NY, fromZipCode => source zipcode, 
+   toState => destination state e.g. AR, IL, toZipCode => destination zipcode, and weight => package weight in LB
 
 2. UPS (Under development)
 
@@ -34,13 +35,14 @@ Define the shipper:
 
 ```ruby
 shipper = { :name => "Sender",
-            :company => "Company",
+            :company => "Catprint",
             :phone_number => "555-555-5555",
-            :address => "Main Street",
-            :city => "Harrison",
-            :state => "AR",
-            :postal_code => "72601",
-            :country_code => "US" }
+            :address => "None",
+            :city => "None",
+            :state => "#{fromState}",
+            :postal_code => "#{fromZipCode}",
+            :country_code => "US" 
+          }
 ```
 
 Define the recipient:
@@ -50,11 +52,12 @@ recipient = { :name => "Recipient",
               :company => "Company",
               :phone_number => "555-555-5555",
               :address => "Main Street",
-              :city => "Franklin Park",
-              :state => "IL",
-              :postal_code => "60131",
+              :city => "None",
+              :state => "#{toState}",
+              :postal_code => "#{toZipCode}",
               :country_code => "US",
-              :residential => "false" }
+              :residential => "false" 
+            }
 ```
 
 Define the packages; multiple packages in a single shipment are allowed:

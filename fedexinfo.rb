@@ -2,7 +2,7 @@ require 'fedex'
 
 class FedexInfo
 
-def Fedex_Info (fromZipCode, toZipCode, weight)
+def Fedex_Info (fromState, fromZipCode, toState, toZipCode, weight)
   
 fedex = Fedex::Shipment.new(:key => 'Uo5ehu0ZVJIkwN4y',
                             :password => 'KXOH9K5coupax3FF4bM1opp9M',
@@ -12,23 +12,25 @@ fedex = Fedex::Shipment.new(:key => 'Uo5ehu0ZVJIkwN4y',
                             
                             
 shipper = { :name => "Sender",
-            :company => "Company",
+            :company => "Catprint",
             :phone_number => "555-555-5555",
-            :address => "Main Street",
-            :city => "Harrison",
-            :state => "AR",
+            :address => "None",
+            :city => "None",
+            :state => "#{fromState}",
             :postal_code => "#{fromZipCode}",
-            :country_code => "US" }
+            :country_code => "US" 
+          }
             
 recipient = { :name => "Recipient",
               :company => "Company",
               :phone_number => "555-555-5555",
               :address => "Main Street",
-              :city => "Franklin Park",
-              :state => "IL",
+              :city => "None",
+              :state => "#{toState}",
               :postal_code => "#{toZipCode}",
               :country_code => "US",
-              :residential => "false" }
+              :residential => "false" 
+            }
               
 packages = []
 packages << {
@@ -64,7 +66,7 @@ end
 end
 
 my_object = FedexInfo.new
-results = my_object.Fedex_Info "72601","60131","30"
+results = my_object.Fedex_Info "MI", "48503","NY", "12776", "15"
 
 puts results
 
