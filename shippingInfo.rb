@@ -1,22 +1,31 @@
 require 'fedex'
+require 'shipping'
+    
 
-class FedexInfo
+class ShippingInfo
 
-def Fedex_Info (fromState, fromZipCode, toState, toZipCode, weight)
-  
+def Shipping_Info (fromZipCode, toZipCode, weight)
+
 fedex = Fedex::Shipment.new(:key => 'Uo5ehu0ZVJIkwN4y',
                             :password => 'KXOH9K5coupax3FF4bM1opp9M',
                             :account_number => '510087046',
                             :meter => '118564789',
                             :mode => 'test')
                             
-                            
+ups = Shipping::UPS.new :zip => "#{toZipCode}", 
+                        :sender_zip => "#{fromZipCode}", 
+                        :weight => 15, 
+                        :ups_license_number => "9CA349F0CB25A9DB", 
+                        :ups_user =>"piyushkp", 
+                        :ups_password =>"Admin123#",
+                        :mode => 'test'
+
 shipper = { :name => "Sender",
             :company => "Catprint",
             :phone_number => "555-555-5555",
             :address => "None",
             :city => "None",
-            :state => "#{fromState}",
+            :state => Shipping::Base.state_from_zip("#{fromZipCode}"),
             :postal_code => "#{fromZipCode}",
             :country_code => "US" 
           }
@@ -26,7 +35,7 @@ recipient = { :name => "Recipient",
               :phone_number => "555-555-5555",
               :address => "Main Street",
               :city => "None",
-              :state => "#{toState}",
+              :state => Shipping::Base.state_from_zip("#{toZipCode}"),
               :postal_code => "#{toZipCode}",
               :country_code => "US",
               :residential => "false" 
@@ -55,18 +64,20 @@ ship = fedex.ship(:shipper=>shipper,
                   :packages => packages,
                   :service_type => "FEDEX_GROUND",
                   :shipping_details => shipping_details)
- 
-fedexInfo = { "total_net_charge" => rate.total_net_charge,  
-              "ground_transit" => ship[:completed_shipment_detail][:operational_detail] [:transit_time]
+                  
+
+shippingInfo = { "Fedex Price" => rate.total_net_charge,  
+              "Fedex ground_transit" => ship[:completed_shipment_detail][:operational_detail] [:transit_time],
+              "UPS Price" => ups.price
             } 
 
-return fedexInfo
+return shippingInfo
 
 end
 end
 
-my_object = FedexInfo.new
-results = my_object.Fedex_Info "MI", "48503","NY", "12776", "15"
+my_object = ShippingInfo.new
+results = my_object.Shipping_Info "48503", "12776", "10"
 
 puts results
 

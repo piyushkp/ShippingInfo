@@ -3,7 +3,7 @@ $:.push File.expand_path("../lib", __FILE__)
 require "fedex/version"
 
 Gem::Specification.new do |s|
-  s.name        = "fedex"
+  s.name        = "ShippingInfo"
   s.version     = Fedex::VERSION
   s.platform    = Gem::Platform::RUBY
   s.authors     = ["Piyush Patel"]
