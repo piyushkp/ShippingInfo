@@ -6,10 +6,9 @@
    This will use FEDEX API to get the shipment information, you will need a Fedex developer/production credentials.
 ```ruby
    Use Fedex_Info method of FedexInfo class from fedexinfo.rb. 
-   def Fedex_Info (fromState, fromZipCode, toState, toZipCode, weight)
+   def Fedex_Info (fromZipCode, toZipCode, weight)
 ````		
-   where fromState => source state e.g. MI, NY, fromZipCode => source zipcode, 
-   toState => destination state e.g. AR, IL, toZipCode => destination zipcode, and weight => package weight in LB
+   where fromZipCode => source zipcode, toZipCode => destination zipcode, and weight => package weight in LB
 
 2. UPS 
 
