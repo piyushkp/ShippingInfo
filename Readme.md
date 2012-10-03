@@ -11,7 +11,32 @@
    where fromState => source state e.g. MI, NY, fromZipCode => source zipcode, 
    toState => destination state e.g. AR, IL, toZipCode => destination zipcode, and weight => package weight in LB
 
-2. UPS (Under development)
+2. UPS 
+
+UPS shipping information, get UPS shipping rate and transit time.
+```ruby
+access_options = {  :access_license_number => '9CA349F0CB25A9DB',
+                    :user_id => 'piyushkp',
+                    :password => 'Admin123#',
+                    :order_cutoff_time => 17 ,
+                    :sender_city => 'None',
+                    :sender_state => Fedex::UpsInfo.state_from_zip("#{fromZipCode}"),
+                    :sender_zip => "#{fromZipCode}",
+                    :sender_country_code => 'US'
+                  }
+  
+request_options = { :total_packages => 1,
+                    :unit_of_measurement => 'LBS',
+                    :weight => 10,
+                    :city => 'None',
+                    :state => Fedex::UpsInfo.state_from_zip("#{toZipCode}"),
+                    :zip => "#{toZipCode}",
+                    :country_code => 'US',
+                    :mode => 'test'
+                  }
+  
+upsInfo = Fedex::UpsInfo.new(access_options)
+````
 
 3. US Post Office (Under development)
 

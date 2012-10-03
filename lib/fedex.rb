@@ -1,5 +1,6 @@
 require 'fedex/shipment'
 
+
 # Get shipping rates trough Fedex Web Services
 #
 # In order to use the API you will need to apply for developer/production credentials,
@@ -50,6 +51,8 @@ require 'fedex/shipment'
 #        @rate_zone="51">
 module Fedex
   require 'fedex/version'
+  require 'ups/upsinfo'
+  require 'rexml/document'
   #Exceptions: Fedex::RateError
   class RateError < StandardError; end
 end
