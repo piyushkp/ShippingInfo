@@ -50,7 +50,7 @@ gem 'fedex'
 Rails 2.x or without Rails or Bundler:
 
 ```ruby
-gem install fedex
+gem install ShippingInfo
 ```
 
 # Usage example:
