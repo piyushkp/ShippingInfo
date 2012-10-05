@@ -5,8 +5,8 @@
    For more information visit [Fedex Web Services for Shipping](https://www.fedex.com/wpor/web/jsp/drclinks.jsp?links=wss/index.html).
    This will use FEDEX API to get the shipment information, you will need a Fedex developer/production credentials.
 ```ruby
-   Use Fedex_Info method of FedexInfo class from fedexinfo.rb. 
-   def Fedex_Info (fromZipCode, toZipCode, weight)
+   Use Shipping_Info method. 
+   def Shipping_Info (fromZipCode, toZipCode, weight)
 ````		
    where fromZipCode => source zipcode, toZipCode => destination zipcode, and weight => package weight in LB
 
@@ -41,13 +41,7 @@ upsInfo = Fedex::UpsInfo.new(access_options)
 
 # Installation:
 
-Rails 3.x using Bundler's Gemfile:
-
-```ruby
-gem 'fedex'
-````
-
-Rails 2.x or without Rails or Bundler:
+Install gem :
 
 ```ruby
 gem install ShippingInfo
