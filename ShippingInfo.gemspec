@@ -5,11 +5,11 @@ require "rake"
 
 Gem::Specification.new do |s|
   s.name        = "ShippingInfo"
-  s.version     = Fedex::VERSION
+  s.version     = 1.0
   s.platform    = Gem::Platform::RUBY
   s.authors     = ["Piyush Patel"]
   s.email       = ["er.piyushpatel@gmail.com"]
-  s.homepage    = "https://github.com/piyushkp/shippinginfo"
+  s.homepage    = "http://rubygems.org/gems/shippinginfo"
   s.summary     = %q{Fedex Web Services}
   s.description = %q{Provides an interface to Fedex Web Services(version 10) - shipping rates, generate labels and address validation}
 
