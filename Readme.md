@@ -1,5 +1,12 @@
 # Shipping Rate
 
+# Installation:
+
+Install gem :
+
+```ruby
+gem install ShippingInfo
+```
 1. Fedex
 
    For more information visit [Fedex Web Services for Shipping](https://www.fedex.com/wpor/web/jsp/drclinks.jsp?links=wss/index.html).
@@ -9,45 +16,8 @@
    def Shipping_Info (fromZipCode, toZipCode, weight)
 ````		
    where fromZipCode => source zipcode, toZipCode => destination zipcode, and weight => package weight in LB
-
-2. UPS 
-
-UPS shipping information, get UPS shipping rate and transit time.
-```ruby
-access_options = {  :access_license_number => '9CA349F0CB25A9DB',
-                    :user_id => 'piyushkp',
-                    :password => 'Admin123#',
-                    :order_cutoff_time => 17 ,
-                    :sender_city => 'None',
-                    :sender_state => Fedex::UpsInfo.state_from_zip("#{fromZipCode}"),
-                    :sender_zip => "#{fromZipCode}",
-                    :sender_country_code => 'US'
-                  }
-  
-request_options = { :total_packages => 1,
-                    :unit_of_measurement => 'LBS',
-                    :weight => 10,
-                    :city => 'None',
-                    :state => Fedex::UpsInfo.state_from_zip("#{toZipCode}"),
-                    :zip => "#{toZipCode}",
-                    :country_code => 'US',
-                    :mode => 'test'
-                  }
-  
-upsInfo = Fedex::UpsInfo.new(access_options)
-````
-
-3. US Post Office (Under development)
-
-# Installation:
-
-Install gem :
-
-```ruby
-gem install ShippingInfo
-```
-
-# Usage example:
+   
+   # Usage example:
 
 Define the shipper:
 
@@ -155,13 +125,39 @@ ship = fedex.ship(:shipper=>shipper,
  
 puts ship[:completed_shipment_detail][:operational_detail] [:transit_time]
 ```
-# Services/Options Available
 
+2. UPS 
+
+UPS shipping information, get UPS shipping rate and transit time.
 ```ruby
-Fedex::Shipment::SERVICE_TYPES
-Fedex::Shipment::PACKAGING_TYPES
-Fedex::Shipment::DROP_OFF_TYPES
+access_options = {  :access_license_number => '9CA349F0CB25A9DB',
+                    :user_id => 'piyushkp',
+                    :password => 'Admin123#',
+                    :order_cutoff_time => 17 ,
+                    :sender_city => 'None',
+                    :sender_state => Fedex::UpsInfo.state_from_zip("#{fromZipCode}"),
+                    :sender_zip => "#{fromZipCode}",
+                    :sender_country_code => 'US'
+                  }
+  
+request_options = { :total_packages => 1,
+                    :unit_of_measurement => 'LBS',
+                    :weight => 10,
+                    :city => 'None',
+                    :state => Fedex::UpsInfo.state_from_zip("#{toZipCode}"),
+                    :zip => "#{toZipCode}",
+                    :country_code => 'US',
+                    :mode => 'test'
+                  }
+  
+upsInfo = Fedex::UpsInfo.new(access_options)
+
+"UPS Price" => upsInfo.getPrice(request_options)
+"UPS GND Transit days" => upsInfo.getTransitTime(request_options)
+
 ````
+
+3. US Post Office (Under development)
 
 # Contributors:
 - [Piyush Patel](http://github.com/piyushkp) (Piyush Patel)
