@@ -17,7 +17,7 @@ gem install ShippingInfo
 ````		
    where fromZipCode => source zipcode, toZipCode => destination zipcode, and weight => package weight in LB
    
-   # Usage example:
+# Usage example:
 
 Define the shipper:
 
