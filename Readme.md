@@ -2,12 +2,10 @@
 
 # Installation:
 
-Install gem :
-
 ```ruby
 gem install ShippingInfo
 ```
-1. Fedex
+# 1. Fedex
 
    For more information visit [Fedex Web Services for Shipping](https://www.fedex.com/wpor/web/jsp/drclinks.jsp?links=wss/index.html).
    This will use FEDEX API to get the shipment information, you will need a Fedex developer/production credentials.
@@ -126,7 +124,7 @@ ship = fedex.ship(:shipper=>shipper,
 puts ship[:completed_shipment_detail][:operational_detail] [:transit_time]
 ```
 
-2. UPS 
+# 2. UPS 
 
 UPS shipping information, get UPS shipping rate and transit time.
 ```ruby
@@ -157,7 +155,7 @@ upsInfo = Fedex::UpsInfo.new(access_options)
 
 ````
 
-3. US Post Office (Under development)
+# 3. US Post Office (Under development)
 
 # Contributors:
 - [Piyush Patel](http://github.com/piyushkp) (Piyush Patel)
